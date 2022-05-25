@@ -1,0 +1,30 @@
+///usr/bin/env jbang "$0" "$@" ; exit $?
+//DEPS info.picocli:picocli:4.5.0
+//JAVA 18
+
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Parameters;
+
+@Command(name = "p2e", mixinStandardHelpOptions = true, version = "p2e 0.1",
+        description = "Convert application properties to environment variables")
+class p2e implements Runnable {
+    @Parameters(index = "0", description = "The application property")
+    private String property;
+
+    public static void main(String... args) {
+        System.exit(new CommandLine(new p2e()).execute(args));
+    }
+
+    @Override
+    public void run() {
+        // see https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.typesafe-configuration-properties.relaxed-binding.environment-variables
+        var environmentVariable =
+                property
+                    .replace(".", "_")
+                    .replace("-", "")
+                    .toUpperCase();
+
+        System.out.println(environmentVariable);
+    }
+}

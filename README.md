@@ -1,2 +1,2 @@
 # p2e
-Convert Spring property names to environment variables
+Convert application property names to environment variable names

@@ -1,13 +1,14 @@
 ///usr/bin/env jbang "$0" "$@" ; exit $?
-//DEPS info.picocli:picocli:4.5.0
-//JAVA 18
+//DEPS info.picocli:picocli:4.6.3
+//DEPS info.picocli:picocli-codegen:4.6.3
+//JAVA 17
 
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 @Command(name = "p2e", mixinStandardHelpOptions = true, version = "p2e 0.1",
-        description = "Convert application property names to environment variable names.")
+        description = "Convert Spring application property names to environment variable names.")
 class p2e implements Runnable {
     @Parameters(index = "0", description = "The property name")
     private String property;

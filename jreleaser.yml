@@ -11,14 +11,12 @@ project:
 assemble:
   archive:
     p2e:
+      active: ALWAYS
+      attachPlatform: true
       formats:
         - ZIP
       fileSets:
-        - input: .
-          includes:
-            - LICENSE
-            - README.md
-        - input: .
+        - input: build
           output: bin
           includes:
-            - p2e.bin
+            - p2e

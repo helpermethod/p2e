@@ -29,4 +29,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
         run: |
-          ./jbang export local --native --output p2e p2e.java
+          jbang export local --native --output p2e p2e.java

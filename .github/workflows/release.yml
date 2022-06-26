@@ -19,7 +19,7 @@ jobs:
           - os: macos-12
             shell: bash
           - os: windows-2022
-            shell: cmd
+            shell: msys2
     defaults:
       run:
         shell: ${{ matrix.shell }}

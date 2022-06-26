@@ -17,6 +17,9 @@ jobs:
           - ubuntu-22.04
           - macos-12
           - windows-2022
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Check out repository
         uses: actions/checkout@v3

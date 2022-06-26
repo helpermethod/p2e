@@ -14,9 +14,9 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-20.04
-          - macos-10.15
-          - windows-2010
+          - ubuntu-22.04
+          - macos-12
+          - windows-2022
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -28,7 +28,4 @@ jobs:
           components: native-image
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
-        uses: jbangdev/jbang-action@v0.95.0
-        with:
-          script: p2e.java
-          scriptargs: export local --native --output=p2e
+        run: ./jbang export local --native --output p2e p2e.java

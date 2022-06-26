@@ -31,4 +31,4 @@ jobs:
         uses: jbangdev/jbang-action@v0.95.0
         with:
           script: p2e.java
-          script_args: export local --native --output=p2e
+          scriptargs: export local --native --output=p2e

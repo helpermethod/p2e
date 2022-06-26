@@ -22,7 +22,7 @@ jobs:
             shell: cmd
     defaults:
       run:
-        shell: {{ matrix.shell }}
+        shell: ${{ matrix.shell }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v3

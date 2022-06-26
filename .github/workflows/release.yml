@@ -13,13 +13,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os:
-          - ubuntu-22.04
-          - macos-12
-          - windows-2022
+        include:
+          - os: ubuntu-22.04
+            shell: bash
+          - os: macos-12
+            shell: bash
+          - os: windows-2022
+            shell: cmd
     defaults:
       run:
-        shell: bash
+        shell: {{ matrix.shell }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v3

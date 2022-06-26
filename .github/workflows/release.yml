@@ -17,9 +17,6 @@ jobs:
           - os: ubuntu-22.04
           - os: macos-12
           - os: windows-2019
-    defaults:
-      run:
-        shell: ${{ matrix.shell }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v3

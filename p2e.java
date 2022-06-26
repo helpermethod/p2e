@@ -21,10 +21,10 @@ class p2e implements Runnable {
     public void run() {
         // see https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.typesafe-configuration-properties.relaxed-binding.environment-variables
         var environmentVariable =
-                property
-                    .replace(".", "_")
-                    .replace("-", "")
-                    .toUpperCase();
+            property
+                .replace(".", "_")
+                .replace("-", "")
+                .toUpperCase();
 
         System.out.println(environmentVariable);
     }

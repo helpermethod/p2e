@@ -14,8 +14,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: ubuntu-22.04
-          - os: macos-12
+          #          - os: ubuntu-22.04
+          #          - os: macos-12
           - os: windows-2022
     steps:
       - name: Check out repository
@@ -27,5 +27,11 @@ jobs:
           java-version: 17
           components: native-image
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check
+        run: |
+          $env:GRAALVM_HOME
+          $env:JAVA_HOME
+          java --version
+          native-image --version
       - name: Build
         run: ./jbang export local --native --output p2e p2e.java

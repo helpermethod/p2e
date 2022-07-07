@@ -16,7 +16,7 @@ assemble:
       formats:
         - ZIP
       fileSets:
-        - input: build
+        - input: .
           output: bin
           includes:
             - p2e

@@ -44,4 +44,4 @@ jobs:
     needs: assemble
     steps: 
       - name: Release
-        runs: echo 'Release all the things'
+        run: echo 'Release all the things'

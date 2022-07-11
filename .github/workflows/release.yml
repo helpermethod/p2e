@@ -33,8 +33,13 @@ jobs:
         with:
           version: 1.1.0
           arguments: assemble
+          env:
+            JRELEASER_PROJECT_VERSION: ${{ github.event.inputs.version }}
       - name: Upload assembly
         uses: actions/upload-artifact@v3
         with:
           name: p2e-${{ matrix.platform }}-x86-64.zip
           path: out/jreleaser/assemble/p2e/archive/p2e-*.zip
+  release:
+    needs: assemble
+    steps: echo 'Assemble all the things'

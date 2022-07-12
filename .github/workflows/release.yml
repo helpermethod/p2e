@@ -42,6 +42,7 @@ jobs:
           path: out/jreleaser/assemble/p2e/archive/p2e-*.zip
   release:
     needs: assemble
+    runs-on: ubuntu-22.04
     steps: 
       - name: Release
         run: echo 'Release all the things'

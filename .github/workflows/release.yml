@@ -37,7 +37,7 @@ jobs:
       - name: Upload assembly
         uses: actions/upload-artifact@v3
         with:
-          name: p2e-${{ matrix.platform }}-x86-64.zip
+          name: p2e-${{ matrix.platform }}-x86_64.zip
           path: out/jreleaser/assemble/p2e/archive/p2e-*.zip
   release:
     needs: assemble
@@ -50,12 +50,12 @@ jobs:
       - name: Download Linux assembly
         uses: actions/download-artifact@v3
         with:
-          name: p2e-linux-x86-64.zip
+          name: p2e-linux-x86_64.zip
           path: out/jreleaser/assemble/p2e/archive
       - name: Download OS X assembly
         uses: actions/download-artifact@v3
         with:
-          name: p2e-osx-x86-64.zip
+          name: p2e-osx-x86_64.zip
           path: out/jreleaser/assemble/p2e/archive
       - name: Release  
         uses: jreleaser/release-action@2.2.0

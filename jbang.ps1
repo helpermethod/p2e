@@ -3,12 +3,12 @@
 #
 # To run this script remotely type this in your PowerShell
 # (where <args>... are the arguments you want to pass to JBang):
-#   iex "& { $(iwr https://ps.jbang.dev) } <args>..."
+#   iex "& { $(iwr -useb https://ps.jbang.dev) } <args>..."
 #
 # An alternative way is to type:
-#   & ([scriptblock]::Create($(iwr https://ps.jbang.dev))) <args>...
+#   & ([scriptblock]::Create($(iwr -useb https://ps.jbang.dev))) <args>...
 # Which even allows you to store the command in a variable for re-use:
-#   $jbang = ([scriptblock]::Create($(iwr https://ps.jbang.dev)))
+#   $jbang = ([scriptblock]::Create($(iwr -useb https://ps.jbang.dev)))
 #   & $jbang <args>...
 #
 
@@ -147,14 +147,14 @@ if ($JAVA_EXEC -eq "") {
       # Activate the downloaded JDK giving it its proper name
       Rename-Item -Path "$TDIR\jdks\$javaVersion.tmp" -NewName "$javaVersion" >$null 2>&1
       # Set the current JDK
-      & $JAVA_EXEC -classpath "$jarPath" dev.jbang.Main jdk default $javaVersion
+      & "$JAVA_EXEC" -classpath "$jarPath" dev.jbang.Main jdk default $javaVersion
     }
   }
 }
 
 $env:JBANG_RUNTIME_SHELL="powershell"
 $env:JBANG_STDIN_NOTTY=$MyInvocation.ExpectingInput
-$output = & $JAVA_EXEC $env:JBANG_JAVA_OPTIONS -classpath "$jarPath" dev.jbang.Main $args
+$output = & "$JAVA_EXEC" $env:JBANG_JAVA_OPTIONS -classpath "$jarPath" dev.jbang.Main $args
 $err=$LASTEXITCODE
 
 $erroractionpreference=$old_erroractionpreference

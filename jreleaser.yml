@@ -26,9 +26,9 @@ distributions:
   p2e:
     type: NATIVE_IMAGE
     artifacts:
-      - path: out/jreleaser/assemble/p2e/archive/{{distributionName}}-{{projectVersion}}-linux-x86_64.zip
+      - path: out/jreleaser/assemble/{{distributionName}}/archive/{{distributionName}}-{{projectVersion}}-linux-x86_64.zip
         platform: linux-x86_64
-      - path: out/jreleaser/assemble/p2e/archive/{{distributionName}}-{{projectVersion}}-osx-x86_64.zip
+      - path: out/jreleaser/assemble/{{distributionName}}/archive/{{distributionName}}-{{projectVersion}}-osx-x86_64.zip
         platform: osx-x86_64
-      - path: out/jreleaser/assemble/p2e/archive/{{distributionName}}-{{projectVersion}}-windows-x86_64.zip
+      - path: out/jreleaser/assemble/{{distributionName}}/archive/{{distributionName}}-{{projectVersion}}-windows-x86_64.zip
         platform: windows-x86_64

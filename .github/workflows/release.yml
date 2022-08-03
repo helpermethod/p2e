@@ -35,5 +35,4 @@ jobs:
           setup-java: false
         env:
           JRELEASER_PROJECT_VERSION: ${{ github.event.inputs.version }}
-          JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          JRELEASER_HOMEBREW_TOKEN: ${{ secrets.HOMEBREW_TOKEN }}
+          JRELEASER_GITHUB_TOKEN: ${{ secrets.GH_PAT }}

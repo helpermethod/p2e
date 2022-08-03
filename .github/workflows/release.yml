@@ -6,17 +6,8 @@ on:
         description: Release version
         required: true
 jobs:
-  assemble:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        include:
-          - os: ubuntu-22.04
-            platform: linux
-          - os: macos-12
-            platform: osx
-          - os: windows-2022
-            platform: windows
+  release:
+    runs-on: macos-12
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -29,46 +20,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
         run: ./jbang export portable --native --output p2e p2e.java
-      - name: Assemble
-        uses: jreleaser/release-action@2.2.0
-        with:
-          version: 1.1.0
-          arguments: assemble
-        env:
-          JRELEASER_PROJECT_VERSION: ${{ github.event.inputs.version }}
-      - name: Upload assembly
-        uses: actions/upload-artifact@v3
-        with:
-          name: p2e-${{ matrix.platform }}-x86_64.zip
-          path: out/jreleaser/assemble/p2e/archive/p2e-*.zip
-  release:
-    needs: assemble
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Download Linux assembly
-        uses: actions/download-artifact@v3
-        with:
-          name: p2e-linux-x86_64.zip
-          path: out/jreleaser/assemble/p2e/archive
-      - name: Download OS X assembly
-        uses: actions/download-artifact@v3
-        with:
-          name: p2e-osx-x86_64.zip
-          path: out/jreleaser/assemble/p2e/archive
-      - name: Download Windows assembly
-        uses: actions/download-artifact@v3
-        with:
-          name: p2e-windows-x86_64.zip
-          path: out/jreleaser/assemble/p2e/archive
       - name: Release
         uses: jreleaser/release-action@2.2.0
         with:
           version: 1.1.0
-          setup-java: true
         env:
           JRELEASER_PROJECT_VERSION: ${{ github.event.inputs.version }}
           JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JRELEASER_HOMEBREW_TOKEN: ${{ secrets.HOMEBREW_TOKEN }}

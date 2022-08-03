@@ -20,10 +20,19 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
         run: ./jbang export native p2e.java
+      - name: Assemble
+        uses: jreleaser/release-action@2.2.0
+        with:
+          version: 1.1.0
+          setup-java: false
+          arguments: assemble
+        env:
+          JRELEASER_PROJECT_VERSION: ${{ github.event.inputs.version }}
       - name: Release
         uses: jreleaser/release-action@2.2.0
         with:
           version: 1.1.0
+          setup-java: false
         env:
           JRELEASER_PROJECT_VERSION: ${{ github.event.inputs.version }}
           JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

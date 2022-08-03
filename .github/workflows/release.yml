@@ -19,7 +19,7 @@ jobs:
           components: native-image
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
-        run: ./jbang export portable --native --output p2e p2e.java
+        run: ./jbang --native --output p2e p2e.java
       - name: Release
         uses: jreleaser/release-action@2.2.0
         with:

@@ -3,6 +3,7 @@
 //DEPS info.picocli:picocli-codegen:4.6.3
 //JAVA 17
 
+import java.util.Locale;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
@@ -24,7 +25,7 @@ class p2e implements Runnable {
             property
                 .replace(".", "_")
                 .replace("-", "")
-                .toUpperCase();
+                .toUpperCase(Locale.ENGLISH);
 
         System.out.println(environmentVariableName);
     }

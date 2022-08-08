@@ -1,6 +1,6 @@
 project:
   name: p2e
-  description: Convert Spring application property names to environment variable names.
+  description: Convert Spring configuration property names to environment variable names.
   website: https://github.com/helpermethod/p2e
   authors:
     - Oliver Weiler

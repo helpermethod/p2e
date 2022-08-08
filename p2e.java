@@ -9,7 +9,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 @Command(name = "p2e", mixinStandardHelpOptions = true, version = "0.1.0",
-        description = "Convert Spring application property names to environment variable names.")
+        description = "Convert Spring configuration property names to environment variable names.")
 class p2e implements Runnable {
     @Parameters(index = "0", description = "The property name")
     private String property;
@@ -25,6 +25,7 @@ class p2e implements Runnable {
             property
                 .replace(".", "_")
                 .replace("-", "")
+                .replaceAll("\\[(?<index>[0-9]+)\\]", "_${index}")
                 .toUpperCase(Locale.ENGLISH);
 
         System.out.println(environmentVariableName);

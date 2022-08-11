@@ -29,7 +29,7 @@ class p2e implements Runnable {
             property
                 .replace(".", "_")
                 .replace("-", "")
-                .replaceAll("\\[(?<index>[0-9]+)\\]", "_${index}")
+                .replaceAll("\\[(?<index>[0-9]+)]", "_${index}")
                 .toUpperCase(Locale.ENGLISH);
 
         System.out.println(environmentVariableName);

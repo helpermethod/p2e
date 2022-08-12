@@ -11,7 +11,7 @@ import picocli.CommandLine.Parameters;
 @Command(
     name = "p2e",
     mixinStandardHelpOptions = true,
-    version = "0.1.0", 
+    version = "0.1.1", 
     description = "Convert Spring configuration property names to environment variable names."
 )
 class p2e implements Runnable {

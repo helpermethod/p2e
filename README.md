@@ -13,7 +13,7 @@ $ jbang p2e@helpermethod spring.application.name
 
 Alternatively, you can install `p2e` as a native image with [Homebrew](https://brew.sh/).
 
-```
+```sh
 $ brew tap helpermethod/tap
 $ brew install p2e
 

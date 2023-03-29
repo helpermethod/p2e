@@ -39,8 +39,17 @@ if ([System.Enum]::GetNames([System.Net.SecurityProtocolType]) -notcontains 'Tls
     break
 }
 
+$DevModRegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock"
+if (!(Test-Path -Path $DevModRegistryPath) -or (Get-ItemProperty -Path `
+        $DevModRegistryPath -Name AllowDevelopmentWithoutDevLicense -ErrorAction `
+        SilentlyContinue).AllowDevelopmentWithoutDevLicense -ne 1) {
+    [Console]::Error.WriteLine("WARNING: Windows Developer Mode is not enabled on your system, this is necessary");
+    [Console]::Error.WriteLine("for JBang to be able to function correctly, see this page for more information:");
+    [Console]::Error.WriteLine("https://www.jbang.dev/documentation/guide/latest/usage.html#usage-on-windows");
+}
+
 # The Java version to install when it's not installed on the system yet
-if (-not (Test-Path env:JBANG_DEFAULT_JAVA_VERSION)) { $javaVersion='11' } else { $javaVersion=$env:JBANG_DEFAULT_JAVA_VERSION }
+if (-not (Test-Path env:JBANG_DEFAULT_JAVA_VERSION)) { $javaVersion='17' } else { $javaVersion=$env:JBANG_DEFAULT_JAVA_VERSION }
 
 $os='windows'
 $arch='x64'
@@ -66,9 +75,13 @@ if (Test-Path "$PSScriptRoot\jbang.jar") {
   $jarPath="$PSScriptRoot\.jbang\jbang.jar"
 } else {
   if (-not (Test-Path "$JBDIR\bin\jbang.jar") -or -not (Test-Path "$JBDIR\bin\jbang.ps1")) {
-    [Console]::Error.WriteLine("Downloading JBang...")
     New-Item -ItemType Directory -Force -Path "$TDIR\urls" >$null 2>&1
-    $jburl="https://github.com/jbangdev/jbang/releases/latest/download/jbang.zip"
+    if (-not (Test-Path env:JBANG_DOWNLOAD_VERSION)) {
+        $jburl="https://github.com/jbangdev/jbang/releases/latest/download/jbang.zip"
+    } else {
+        $jburl="https://github.com/jbangdev/jbang/releases/download/v$env:JBANG_DOWNLOAD_VERSION/jbang.zip";
+    }
+    [Console]::Error.WriteLine("Downloading JBang $env:JBANG_DOWNLOAD_VERSION...")
     try { Invoke-WebRequest "$jburl" -OutFile "$TDIR\urls\jbang.zip"; $ok=$? } catch {
       $ok=$false
       $err=$_
@@ -129,7 +142,7 @@ if ($JAVA_EXEC -eq "") {
       # If not, download and install it
       New-Item -ItemType Directory -Force -Path "$TDIR\jdks" >$null 2>&1
       [Console]::Error.WriteLine("Downloading JDK $javaVersion. Be patient, this can take several minutes...")
-      $jdkurl="https://api.foojay.io/disco/v2.0/directuris?distro=$distro&javafx_bundled=false&libc_type=$libc_type&archive_type=zip&operating_system=$os&package_type=jdk&version=$javaVersion&architecture=$arch&latest=available"
+      $jdkurl="https://api.foojay.io/disco/v3.0/directuris?distro=$distro&javafx_bundled=false&libc_type=$libc_type&archive_type=zip&operating_system=$os&package_type=jdk&version=$javaVersion&architecture=$arch&latest=available"
       try { Invoke-WebRequest "$jdkurl" -OutFile "$TDIR\bootstrap-jdk.zip"; $ok=$? } catch { $ok=$false }
       if (-not ($ok)) { [Console]::Error.WriteLine("Error downloading JDK"); break }
       [Console]::Error.WriteLine("Installing JDK $javaVersion...")

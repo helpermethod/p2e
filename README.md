@@ -1,4 +1,4 @@
-# p2e
+# :arrows_counterclockwise: p2e
 
 Convert Spring configuration property names to environment variable names.
 

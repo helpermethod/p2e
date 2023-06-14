@@ -2,7 +2,7 @@
 //DEPS info.picocli:picocli:4.7.0
 //DEPS info.picocli:picocli-codegen:4.7.0
 //MANIFEST Implementation-Version=${version}
-//JAVA 19
+//JAVA 20
 
 package com.github.helpermethod.p2e;
 
@@ -11,11 +11,12 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.IVersionProvider;
 import picocli.CommandLine.Parameters;
+import static java.lang.System.out;
 
 @Command(
     name = "p2e",
     mixinStandardHelpOptions = true,
-    versionProvider = p2e.ManifestVersionProvider.class, 
+    versionProvider = p2e.ManifestVersionProvider.class,
     description = "Convert Spring configuration property names to environment variable names."
 )
 class p2e implements Runnable {
@@ -36,7 +37,7 @@ class p2e implements Runnable {
                 .replaceAll("\\[(?<index>[0-9]+)]", "_${index}")
                 .toUpperCase(Locale.ENGLISH);
 
-        System.out.println(environmentVariableName);
+        out.println(environmentVariableName);
     }
 
     static class ManifestVersionProvider implements IVersionProvider {

@@ -14,7 +14,6 @@ jobs:
       - name: Set up GraalVM and Native Image
         uses: graalvm/setup-graalvm@v1
         with:
-          version: latest
           java-version: 20
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build

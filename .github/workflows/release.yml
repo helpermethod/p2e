@@ -14,7 +14,7 @@ jobs:
       - name: Set up GraalVM and Native Image
         uses: graalvm/setup-graalvm@v1
         with:
-          java-version: 20.0.1
+          java-version: 21.0.0
           distribution: graalvm-community
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
@@ -22,7 +22,7 @@ jobs:
       - name: Assemble
         uses: jreleaser/release-action@2.4.1
         with:
-          version: 1.6.0
+          version: 1.8.0
           setup-java: false
           arguments: assemble
         env:
@@ -30,7 +30,7 @@ jobs:
       - name: Release
         uses: jreleaser/release-action@2.4.1
         with:
-          version: 1.6.0
+          version: 1.8.0
           setup-java: false
         env:
           JRELEASER_PROJECT_VERSION: ${{ github.event.inputs.version }}

@@ -20,7 +20,7 @@ jobs:
       - name: Build
         run: ./jbang export native -Dversion=${{ github.event.inputs.version }} p2e.java
       - name: Assemble
-        uses: jreleaser/release-action@2.4.1
+        uses: jreleaser/release-action@2.4.2
         with:
           version: 1.8.0
           setup-java: false
@@ -28,7 +28,7 @@ jobs:
         env:
           JRELEASER_PROJECT_VERSION: ${{ github.event.inputs.version }}
       - name: Release
-        uses: jreleaser/release-action@2.4.1
+        uses: jreleaser/release-action@2.4.2
         with:
           version: 1.8.0
           setup-java: false

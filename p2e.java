@@ -1,7 +1,7 @@
 ///usr/bin/env jbang "$0" "$@" ; exit $?
 //DEPS info.picocli:picocli:4.7.6
 //DEPS info.picocli:picocli-codegen:4.7.6
-//MANIFEST Implementation-Version=${version}
+//MANIFEST Implementation-Version=${version:dev}
 //JAVA 21
 
 package com.github.helpermethod.p2e;

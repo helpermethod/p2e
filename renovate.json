@@ -11,6 +11,16 @@
         "//DEPS ((?<depName>.+:.+):(?<currentValue>[^$].+))(\\@\\w+)?"
       ],
       "datasourceTemplate": "maven"
+    },
+    {
+      "fileMatch": ".github/workflows/[^.]+\\.yml",
+      "matchStrings": [
+        "\\s+uses:\\s*jreleaser/release-action.*",
+        "\\s+version:\\s*(?<currentValue>\\S+)"
+      ],
+      "matchStringsStrategy": "recursive",
+      "depNameTemplate": "jreleaser/jreleaser",
+      "datasourceTemplate": "github-releases"
     }
   ]
 }

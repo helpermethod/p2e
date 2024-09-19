@@ -15,8 +15,8 @@
     {
       "fileMatch": ".github/workflows/[^.]+\\.yml",
       "matchStrings": [
-        "\\s+uses:\\s*jreleaser/release-action.*",
-        "\\s+version:\\s*(?<currentValue>\\S+)"
+        "uses:\\s*jreleaser/release-action.*",
+        "version:\\s*(?<currentValue>\\S+)"
       ],
       "matchStringsStrategy": "recursive",
       "depNameTemplate": "jreleaser/jreleaser",

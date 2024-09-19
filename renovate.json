@@ -13,7 +13,7 @@
       "datasourceTemplate": "maven"
     },
     {
-      "fileMatch": ".github\\/workflows\\/[^.]+.yml",
+      "fileMatch": "\\.github/workflows/[^.]+\\.yml",
       "matchStrings": [
         "uses:\\s*jreleaser/release-action.*",
         "version:\\s*(?<currentValue>\\S+)"

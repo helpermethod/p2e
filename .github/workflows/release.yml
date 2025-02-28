@@ -22,7 +22,7 @@ jobs:
       - name: Assemble
         uses: jreleaser/release-action@2.4.2
         with:
-          version: 1.16.0
+          version: 1.17.0
           setup-java: false
           arguments: assemble
         env:
@@ -30,7 +30,7 @@ jobs:
       - name: Release
         uses: jreleaser/release-action@2.4.2
         with:
-          version: 1.16.0
+          version: 1.17.0
           setup-java: false
         env:
           JRELEASER_PROJECT_VERSION: ${{ github.event.inputs.version }}

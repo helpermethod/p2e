@@ -2,7 +2,7 @@
 //DEPS info.picocli:picocli:4.7.6
 //DEPS info.picocli:picocli-codegen:4.7.6
 //MANIFEST Implementation-Version=${version:dev}
-//JAVA 23
+//JAVA 24
 
 package com.github.helpermethod.p2e;
 
